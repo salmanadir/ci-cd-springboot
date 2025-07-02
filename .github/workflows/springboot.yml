@@ -1,21 +1,21 @@
-name: Spring Boot CLI
+name: Spring Boot CI
 
 on:
   push:
     branches:
-      -main
+      - main
+
 jobs:
   build:
     runs-on: ubuntu-latest
 
     steps:
-    -uses: actions/checkout@v3
+      - uses: actions/checkout@v3
+      - name: Set up JDK
+        uses: actions/setup-java@v3
+        with: 
+          java-version: '21'
+          distribution: 'temurin'
 
-    -name: set up jdk
-    uses: actions/setup-java@v3
-    with: 
-        java-version: '21'
-        distribution: 'temurin'
-
-    -name: Build with Maven
-    run: mvn clean install
+      - name: Build with Maven
+        run: mvn clean install
